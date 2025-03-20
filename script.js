@@ -14,7 +14,7 @@ window.onscroll = () => {
         if(top >= offset && top < offset + height){
             navLinks.forEach(links => {
                 links.classList.remove('active');
-                document.querySelector('header nav ul li a[href*='+ id +']').classList.add(active)
+                document.querySelector('header nav ul li a[href*='+ id +']').classList.add('active')
             })
         }
     })
@@ -24,3 +24,16 @@ menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 }
+
+const toggleSwitch = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    toggleSwitch.checked = true;
+}
+
+toggleSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+});
